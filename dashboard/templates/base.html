@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+{% load static %}
+{% load bootstrap5 %}
+{% load crispy_forms_tags %}
+{% load dashboard_extras %}
+
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="Admin">
+	<meta name="author" content="Alec Fitzgerald">
+	<meta name="keywords" content="Fitzy Codes">
+
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link rel="shortcut icon" href="{% static 'img/icons/icon-48x48.png' %}" />
+            <title>TIB Auction</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+          crossorigin="anonymous">
+	<link href="{% static 'css/app.css' %}" rel="stylesheet">
+    <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" type="text/css">
+    
+
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+</head>
+<style>
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding: 0;
+        -webkit-font-smoothing: antialiased; /* Makes fonts render more smoothly on WebKit browsers */
+        -moz-osx-font-smoothing: grayscale; /* Same for Firefox on Mac OS X */
+    }
+    .navbar {
+        background: linear-gradient(135deg,  rgb(246, 247, 248),  rgb(35, 35, 36),rgb(35, 35, 36));
+        border-bottom: solid white;
+    }
+    .game-gradient-1 {
+        background: linear-gradient(135deg, rgb(35, 35, 36), rgb(246, 247, 248),  rgb(35, 35, 36), rgb(35, 35, 36),rgb(35, 35, 36),rgb(35, 35, 36));
+        color: white;
+    }
+    .game-gradient-2 {
+        background: linear-gradient(135deg,  rgb(35, 35, 36), rgb(246, 247, 248),  rgb(35, 35, 36),rgb(35, 35, 36),rgb(35, 35, 36),rgb(35, 35, 36),rgb(35, 35, 36),rgb(35, 35, 36),rgb(35, 35, 36),rgb(35, 35, 36),rgb(35, 35, 36),rgb(35, 35, 36) );
+        color: rgb(0, 0, 0);
+    }
+    #hero {
+        padding-bottom: 5%;
+        padding-top: 10%;
+    }
+    #mp-button {
+        background-image: linear-gradient( 135deg, #2AFADF 10%, #4C83FF 100%);
+        color: #232526;
+    }
+    img {
+        width: 50px;
+        height: 50px;
+        
+    }
+  
+</style>
+<body>
+<header>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <a class="navbar-brand text-dark" href="/"><img src="/static/img/logo.jpg"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Auctions</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">How It Works</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Login/Signup</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<!-- Hero Section -->
+<div id="hero" class="jumbotron jumbotron-fluid game-gradient-1 text-center">
+    <div class="container">
+        <h1 class="display-3 text-light">Welcome to The Infinite Black Auction!</h1>
+        <p class="lead">The best place to bid on gear and items for <strong><a href="#">The Infinite Black 2</a></strong>.</p>
+        <a id="mp-button" class="btn btn-dark btn-lg w-25" href="#" role="button"><strong>Start Bidding</strong></a>
+    </div>
+</div>
+
+<!-- Features Section -->
+<div class="container-fluid my-2 py-7 game-gradient-2">
+    <div class="row" style="display: flex; justify-content:space-around;">
+        <div class="card col-md-3">
+            <div class="card-body">
+                <h3>Easy Bidding</h3>
+                <p>Our platform makes it super easy to bid on the items you want.</p>
+            </div>
+        </div>
+        <div class="card col-md-3">
+            <div class="card-body">
+                <h3>Secure Transactions</h3>
+                <p>Rest easy knowing your transactions are 100% secure.</p>
+            </div>
+        </div>
+        <div class="card col-md-3">
+            <div class="card-body">
+                <h3>Wide Selection</h3>
+                <p>Browse from a vast collection of in-game items, gear, and ships!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<div class="bg-dark text-white text-center py-3">
+    <p>TheInfiniteBlackAuction © 2023 | Privacy Policy | Terms of Service</p>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
