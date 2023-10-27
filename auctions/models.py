@@ -25,7 +25,7 @@ RANK_CHOICES = [
     ('v', 'V'),('vi', 'VI'),('vii', 'VII'),('viii', 'VIII'),('ix', 'IX'),
     ('x', 'X'),('xi', 'XI'),('xii', 'XII'),('xiii', 'XIII'),('xiv', 'XIV'),
     ('xv', 'XV'),('xvi', 'XVI'),('xvii', 'XVII'),('xviii', 'XVIII'),('xix', 'XIX'),
-    ('xx', 'XX')('xxi', 'XXI'),('xxii', 'XXII'),('xxiii', 'XXIII'),('xxiv', 'XXIV'),
+    ('xx', 'XX'),('xxi', 'XXI'),('xxii', 'XXII'),('xxiii', 'XXIII'),('xxiv', 'XXIV'),
     ('xxv', 'XXV'),('xxvi', 'XXVI'),('xxvii', 'XXVII'),('xxviii', 'XXVIII'),('xxix', 'XXIX'),
     ('xxx', 'XXX')
 ]

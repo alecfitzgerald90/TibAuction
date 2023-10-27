@@ -2,47 +2,55 @@
 {% load bootstrap5 %}
 {% load crispy_forms_tags %}
 {% load static %}
+{% load dashboard_extras %}
 
 {% block content %}
 <style>
-    iframe {
-        height: 1200px;
-        width: 100%;
-        background-color: grey;
-    }
-    .btn {
-        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-    }
-</style>
-
-<h1 class="h3 mb-3"><strong>Fitzy's</strong> Auction</h1>
-<div class="card">
-    <div class="card-body">
+   
+    img {
+        width: 50px;
+        height: 50px;
         
-    </div>
+    }
+    
 
-</div>
-<div class="row">
-    <div class="col-sm-4 mb-3">
-        <div class="card">
-            <div class="card-body">
-                <a href="" class="btn btn-primary lift lift-sm h-100 w-100 text-center" style="width: 100vw;" role="button" aria-disabled="true"><h1 class="text-light"><strong>UPDATES</strong></h1></a>
-            </div>
+</style>
+<div class="bg-dark text-secondary px-4 py-5 text-center">
+    <div class="py-5">
+      <h1 class="display-5 fw-bold text-white">The Infinite Black Auction</h1>
+      <div class="col-lg-6 mx-auto">
+        <p class="fs-5 mb-4">Browse from a vast collection of in-game items, gear, and ships! Our platform makes it super easy to bid on the items you want and rest easy knowing your transactions are 100% secure.</p>
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+          <button type="button" class="btn btn-outline-info btn-lg px-4 me-sm-3 fw-bold">Login</button>
+          <button type="button" class="btn btn-outline-light btn-lg px-4">Signup</button>
         </div>
-    </div>
-    <div class="col-sm-4">
-        <div class="card">
-            <div class="card-body">
-                <a href="" class="btn btn-primary lift lift-sm h-100 w-100 text-center" style="width: 100vw;" role="button" aria-disabled="true"><h1 class="text-light"><strong>INFORMATION</strong></h1></a>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-4 mb-3">
-        <div class="card">
-            <div class="card-body">
-                <a href="" class="btn btn-primary lift lift-sm h-100 w-100 text-center" style="width: 100vw;" role="button" aria-disabled="true"><h1 class="text-light"><strong>DOCUMENTS</strong></h1></a>
-            </div>
-        </div>
+      </div>
     </div>
 </div>
+
+
+<!-- Features Section -->
+<!-- <div class="row" style="display: flex; justify-content:space-around;">
+    <div class="card col-md-3">
+        <div class="card-body">
+            <h3>Easy Bidding</h3>
+            <p>Our platform makes it super easy to bid on the items you want.</p>
+        </div>
+    </div>
+    <div class="card col-md-3">
+        <div class="card-body">
+            <h3>Secure Transactions</h3>
+            <p>Rest easy knowing your transactions are 100% secure.</p>
+        </div>
+    </div>
+    <div class="card col-md-3">
+        <div class="card-body">
+            <h3>Wide Selection</h3>
+            <p>Browse from a vast collection of in-game items, gear, and ships!</p>
+        </div>
+    </div>
+</div> -->
+        
+
+
 {% endblock content %}
