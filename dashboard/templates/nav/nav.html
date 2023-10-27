@@ -1,7 +1,7 @@
 
-<nav class="navbar sticky-top navbar-expand-lg navbar-dark">
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand text-dark" href="/"><img src="/static/img/logo.jpg"></a>
+        <a class="navbar-brand text-dark" href="#"><img class="rounded-circle" src=""></a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -10,10 +10,10 @@
         <div class="collapse navbar-collapse" id="navbarToggler">
             <ul class="navbar-nav ml-auto mb-2 mb-lg-0 text-lg">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Home</a>
+                    <a class="nav-link active" href="{% url 'index' %}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'auctions:auction' %}">Auctions</a>
+                    <a class="nav-link active" href="{% url 'auctions:auction' %}">Auctions</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">How It Works</a>
@@ -22,7 +22,7 @@
                     <a class="nav-link" href="#">Contact Us</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Login/Signup</a>
+                    
                 </li>
                 
                 

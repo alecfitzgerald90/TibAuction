@@ -21,3 +21,17 @@ class AuctionForm(forms.ModelForm):
         self.fields['buyout'].label = 'Buyout Price'
         self.fields['start_time'].label = 'Auction Start Time'
         self.fields['end_time'].label = 'Auction End Time'
+
+class ItemForm(forms.ModelForm):
+    class Meta:
+        model = Item
+        fields = [
+            'item_type',
+            'item_faction',
+            'item_name',
+            'item_rarity',
+            'item_rank',
+            'item_quality',
+            'item_durability',
+            'item_image',
+        ]

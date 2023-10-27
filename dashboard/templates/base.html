@@ -31,20 +31,21 @@
 
 </head>
 <style>
-    
+    body {
+      background-image: linear-gradient( 135deg, #08829d 10%, #31b3d0 100%);
+    }
     .content {
-        background-image: linear-gradient( 135deg, #08829d 10%, #31b3d0 100%);
+      background-image: linear-gradient( 135deg, #08829d 10%, #31b3d0 100%);
     }
-    .navbar {
-        background: linear-gradient(135deg,  rgb(246, 247, 248),  rgb(35, 35, 36),rgb(35, 35, 36));
-    }
+    
+    
   
 </style>
 <body>
-
-    
-
+  <header class="header">
     {% include 'nav/nav.html' %}
+  </header>
+    
     
     <!-- Main Content Area Extends To All Pages -->
     <main class="content">
@@ -52,24 +53,15 @@
     {% block content %}
     {% endblock content %}
         </div>
+         <!-- Footer -->
+        
     </main>
-    <!-- Footer -->
-    
-    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-        <div class="col-md-4 d-flex align-items-center">
-          <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
-            <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
-          </a>
-          <span class="mb-3 mb-md-0 text-body-secondary">© 2023 Company, Inc</span>
-        </div>
-    
-        <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-          <li class="ms-3"><a class="text-body-secondary" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#twitter"></use></svg></a></li>
-          <li class="ms-3"><a class="text-body-secondary" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#instagram"></use></svg></a></li>
-          <li class="ms-3"><a class="text-body-secondary" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"></use></svg></a></li>
-        </ul>
-      </footer>
-      
+  <footer class="footer sticky-bottom mt-auto py-3 bg-body-tertiary bg-dark">
+    <div class="container text-center">
+      <span class="text-body-secondary">TibAuction &copy; 2023</span>
+    </div>
+  </footer>
+   
   
 
 </body>
