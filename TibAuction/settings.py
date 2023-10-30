@@ -71,6 +71,7 @@ INSTALLED_APPS = [
     # my apps
     'dashboard',
     'users',
+    'auctions',
 
 
     # third party apps
@@ -123,24 +124,24 @@ WSGI_APPLICATION = 'TibAuction.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-if PRODUCTION:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': '',
-            'USER': '',
-            'PASSWORD': '',
-            'HOST': 'localhost',
-            'PORT': '',
-        }
+# if PRODUCTION:
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#             'NAME': '',
+#             'USER': '',
+#             'PASSWORD': '',
+#             'HOST': 'localhost',
+#             'PORT': '',
+#         }
+#     }
+# else:
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
-    }
+}
 
 
 # Password validation
@@ -179,12 +180,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-if PRODUCTION:
-    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-else:
-    STATICFILES_DIRS = [
+# if PRODUCTION:
+#     STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# else:
+STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
-    ]
+]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
