@@ -1,7 +1,14 @@
-
+{% load static %}
+<style>
+     img {
+        width: 50px;
+        height: 50px;
+        
+    }
+</style>
 <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand text-dark" href="#"><img class="rounded-circle" src=""></a>
+        <a class="navbar-brand text-dark" href="{% url 'index' %}"><img class="rounded-circle" src="{% static 'img/logo.jpg' %}"></a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -27,11 +34,11 @@
                 
                 
             </ul>
-            <form class="d-flex">
+            <!-- <form class="d-flex">
                 <input class="form-control me-2 bg-light" type="search" placeholder="Search..." aria-label="Search">
                 <button class="btn btn-outline-warning" type="submit">GO</button>
             
-            </form>
+            </form> -->
             &nbsp;&nbsp;&nbsp;
             <span class="">
                 <img class="rounded-circle border" width="25" height="25" src="https://github.com/mdo.png" alt="">
