@@ -13,6 +13,13 @@ class AuctionForm(forms.ModelForm):
             'start_time',
             'end_time',
         ]
+        widgets = {
+            'starting_bid': forms.NumberInput(attrs={'min': '1.00'}),
+            'buyout': forms.NumberInput(attrs={'min': '1.00'}),
+            'reserve_price': forms.NumberInput(attrs={'min': '1.00'}),
+            'start_time': forms.TextInput(attrs={'class': 'date-picker'}),
+            'end_time': forms.TextInput(attrs={'class': 'date-picker'})
+        }
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['title'].label = 'Title'
@@ -35,3 +42,7 @@ class ItemForm(forms.ModelForm):
             'item_durability',
             'item_image',
         ]
+        widgets = {
+            'item_quality': forms.NumberInput(attrs={'min': '1', 'max': '240'}),
+            'item_durability': forms.NumberInput(attrs={'min': '1', 'max': '100'})
+        }
