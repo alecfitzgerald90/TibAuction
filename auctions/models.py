@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from datetime import datetime, timedelta
+from django.core.validators import MinValueValidator
 
     
 # Setting the different choices for items and ships
