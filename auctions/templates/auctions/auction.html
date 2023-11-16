@@ -19,43 +19,66 @@
     <button class="btn btn-info" type="button">
       <a href="{% url 'auctions:create_auction' %}" class="text-lg text-white">Create Auction</a>
     </button>
-    <input type="text" class="form-control w-25" placeholder="Search...">
+    <input type="text" id="searchBar"  class="form-control w-25" placeholder="Search...">
   </div>
-    <div class="card-body">
-        <div class="d-flex flex-column flex-md-row p-4 gap-4 py-md-5 align-items-center justify-content-center">
-            <div class="list-group">
-              <a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
-                <img src="https://github.com/twbs.png" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0">
-                <div class="d-flex gap-2 w-100 justify-content-between">
-                  <div>
-                    <h6 class="mb-0">List group item heading</h6>
-                    <p class="mb-0 opacity-75">Some placeholder content in a paragraph.</p>
-                  </div>
-                  <small class="opacity-50 text-nowrap">now</small>
+  <div class="container">
+    <div class="row row-cols-1 row-cols-md-4 g-4">
+        {% for auction in auctions %}
+            <div class="col" data-item-name="{{ auction.auction_item.first.item_name }}">
+                <div class="card">
+                  
+                  
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between">
+                        <img src="{% static 'img/logo.jpg' %}" class="card-img-top w-25" alt="{{ auction.title }}">
+                        <i class="fa-solid fa-ellipsis-vertical fa-xl"></i>
+                      </div> 
+                        <h5 class="card-title">{{ auction.title }}</h5>
+                        {% with auction.auction_item.first as item %}
+                            <p class="card-text">{{ item.item_rarity|upper }} {{ item.item_name|upper }} {{ item.item_rank|upper }}</p>
+
+                        {% endwith %}
+                        <p class="card-text">Starting bid: ${{ auction.starting_bid }}</p>
+                        <p class="card-text">BUY NOW: ${{ auction.buyout }}</p>
+
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">Posted now</small>
+                    </div>
                 </div>
-              </a>
-              <a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
-                <img src="https://github.com/twbs.png" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0">
-                <div class="d-flex gap-2 w-100 justify-content-between">
-                  <div>
-                    <h6 class="mb-0">Another title here</h6>
-                    <p class="mb-0 opacity-75">Some placeholder content in a paragraph that goes a little longer so it wraps to a new line.</p>
-                  </div>
-                  <small class="opacity-50 text-nowrap">3d</small>
-                </div>
-              </a>
-              <a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
-                <img src="https://github.com/twbs.png" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0">
-                <div class="d-flex gap-2 w-100 justify-content-between">
-                  <div>
-                    <h6 class="mb-0">Third heading</h6>
-                    <p class="mb-0 opacity-75">Some placeholder content in a paragraph.</p>
-                  </div>
-                  <small class="opacity-50 text-nowrap">1w</small>
-                </div>
-              </a>
             </div>
-          </div>
+        {% empty %}
+            <p>No auctions available.</p>
+        {% endfor %}
     </div>
+  </div>
 </div>
+
+
+<script>
+  // Wait for the DOM to be ready
+  document.addEventListener('DOMContentLoaded', function () {
+      // Get the search bar and auction items
+      const searchBar = document.getElementById('searchBar');
+      const auctionItems = document.querySelectorAll('.col');
+  
+      // Function to perform the search
+      function searchItems() {
+          const searchText = searchBar.value.toLowerCase();
+  
+          auctionItems.forEach(item => {
+              const itemName = item.getAttribute('data-item-name').toLowerCase();
+              if (itemName.includes(searchText)) {
+                  item.style.display = ''; // Shows the item if it matches
+              } else {
+                  item.style.display = 'none'; // Hides the item if it doesn't match
+              }
+          });
+      }
+  
+      // Event listener for the search bar
+      searchBar.addEventListener('keyup', searchItems);
+  });
+  </script>
+  
 {% endblock content %}

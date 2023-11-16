@@ -24,7 +24,8 @@
 </style>
 <div class="card">
     <div class="card-body">
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
             <div class="row d-flex justify-content-center text-white">
                 <h3 class="text-white">Item</h3>
                 <hr>
