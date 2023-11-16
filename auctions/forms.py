@@ -46,3 +46,6 @@ class ItemForm(forms.ModelForm):
             'item_quality': forms.NumberInput(attrs={'min': '1', 'max': '240'}),
             'item_durability': forms.NumberInput(attrs={'min': '1', 'max': '100'})
         }
+        def __init__(self, *args, **kwargs):
+            super().__init__(*args, **kwargs)
+            self.fields['item_image'].required=False

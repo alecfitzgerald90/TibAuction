@@ -59,10 +59,10 @@ TEST_SITE = False
 #     with open('/etc/config.json') as config_file:
 #         config = json.load(config_file)
 #         ALLOWED_HOSTS = ['.fitzysauction.com']
-# else:
-#     with open('etc/config.json') as config_file:
-#         config = json.load(config_file)
-#         ALLOWED_HOSTS = []     
+
+with open('etc/config.json') as config_file:
+    config = json.load(config_file)
+    ALLOWED_HOSTS = ['127.0.0.1']     
 
 
 # Application definition

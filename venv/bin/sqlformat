@@ -1,4 +1,4 @@
-#!/home/alec/Desktop/TibAuction/venv/bin/python3
+#!/home/alec/TibAuction/venv/bin/python3
 # -*- coding: utf-8 -*-
 import re
 import sys
