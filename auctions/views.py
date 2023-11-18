@@ -12,6 +12,7 @@ def auction(request):
     }
     return render(request, "auctions/auction.html", context)
 
+
 def create_auction(request):
     form = AuctionForm(data = request.POST or None, files = request.FILES or None)
     item_form = ItemForm(data=request.POST or None, files=request.FILES or None)
@@ -22,7 +23,7 @@ def create_auction(request):
 
         item_obj = item_form.save(commit=False)
         item_obj.auction = auction_obj
-        item_obj.save()  # This line is crucial, as it saves the item object with the auction reference
+        item_obj.save()  
 
         messages.success(request, "Auction created!!")
         return redirect('/auctions/auction')
@@ -35,3 +36,11 @@ def create_auction(request):
         'item_form': item_form,
     }
     return render(request, "auctions/create_auction.html", context)
+
+
+def delete_auction(request, pk):
+    auction = Auction.objects.get(id=pk)
+    auction.delete()
+    messages.success(request, "Auction successfully deleted")
+    return redirect('/auctions/auction')
+    
