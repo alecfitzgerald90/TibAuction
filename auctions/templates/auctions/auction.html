@@ -19,14 +19,18 @@
     height: 65px;
     /* object-fit:initial; */
   }
+
+  
 </style>
   
 <div class="card main-card">
   <div class="card-header d-flex justify-content-between">
-    <button class="btn btn-info" type="button">
-      <a href="{% url 'auctions:create_auction' %}" class="text-lg text-dark">Create Auction</a>
-    </button>
-    <input type="text" id="searchBar"  class="form-control w-25" placeholder="Search...">
+    <a href="{% url 'auctions:create_auction' %}">
+      <button class="btn btn-info text-lg text-dark" type="button" href="{% url 'auctions:create_auction' %}">
+        Create Auction
+      </button>
+    </a>
+    <input type="text" id="searchBar"  class="form-control w-25" placeholder="Search item name...">
   </div>
   <div class="container pt-5">
     <div class="row row-cols-1 row-cols-md-4 g-4">
@@ -43,8 +47,12 @@
 
                       <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
                         <li>
-                          <i class="fa-regular fa-trash-can btn dropdown-item text-danger"  data-bs-toggle="modal" data-bs-target="#delete_{{ auction.id }}"></i>
-                          
+                          <div class="d-flex align-items-center">
+                            <div class="me-2">
+                              <i class="fa-regular fa-trash-can btn dropdown-item text-danger"  data-bs-toggle="modal" data-bs-target="#delete_{{ auction.id }}"></i>
+                            </div>
+                            <strong>Delete</strong>
+                          </div> 
                         </li>
                         
                       </ul>
@@ -53,16 +61,21 @@
                   <div class="card-body">
                       <h5 class="card-title">{{ auction.title }}</h5>
                       {% with auction.auction_item.first as item %}
-                          <p class="card-text">{{ item.item_rarity|upper }} {{ item.item_name|upper }} {{ item.item_rank|upper }}</p>
-
+                          <span>{{ item.item_rarity|upper }} {{ item.item_name|upper }} {{ item.item_rank|upper }}</span><br>
+                          <span class=" text-sm text-muted">Type: {{ item.item_type }} &nbsp; Faction: {{ item.item_faction }}</span><br>
+                          <span class="text-sm text-muted">Quality: {{ item.item_quality }} &nbsp; Durability: {{ item.item_durability }}%</span>
                       {% endwith %}
-                      <p class="card-text">Starting bid: ${{ auction.starting_bid }}</p>
-                      <p class="card-text">BUY NOW: ${{ auction.buyout }}</p>
+                      <hr>
+                      <div class="d-flex justify-content-between">
+                        <p>Starting bid: ${{ auction.starting_bid }}</p>
+                        <p>Current bid: $0.00</p>
+                      </div>
+                      
+                      <p>BUY NOW: ${{ auction.buyout }}</p>
 
                   </div>
-                  <div class="card-footer">
-                      <small class="text-muted">Start {{ auction.start_time }}</small><br>
-                      <small class="text-muted">End {{ auction.end_time }}</small>
+                  <div class="card-footer text-center">
+                      <small class="text-muted">Ends {{ auction.end_time }}</small>
                   </div>
                 </div>
             </div>
@@ -72,6 +85,7 @@
     </div>
   </div>
 </div>
+
 
 {% for auction in auctions %}
 <!-- MODAL FOR DELETE AUCTION -->
@@ -94,6 +108,7 @@
   </div>
 </div>
 {% endfor %}
+
 <script>
   // Wait for the DOM to be ready
   document.addEventListener('DOMContentLoaded', function () {
@@ -118,6 +133,8 @@
       // Event listener for the search bar
       searchBar.addEventListener('keyup', searchItems);
   });
-  </script>
+
+ 
+</script>
   
 {% endblock content %}

@@ -37,6 +37,7 @@ def create_auction(request):
     }
     return render(request, "auctions/create_auction.html", context)
 
+    
 
 def delete_auction(request, pk):
     auction = Auction.objects.get(id=pk)
