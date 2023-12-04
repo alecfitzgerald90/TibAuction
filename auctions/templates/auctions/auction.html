@@ -5,6 +5,8 @@
 {% load dashboard_extras %}
 
 {% block content %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <style>
   .main-card{
     background-color: rgba(0,0,0,0.7);
@@ -12,39 +14,69 @@
   .card-header {
     background-color: rgba(0,0,0,0.1);
   }
+  .item-image {
+    width: 75px;
+    height: 65px;
+    /* object-fit:initial; */
+  }
+
+  
 </style>
   
 <div class="card main-card">
   <div class="card-header d-flex justify-content-between">
-    <button class="btn btn-info" type="button">
-      <a href="{% url 'auctions:create_auction' %}" class="text-lg text-white">Create Auction</a>
-    </button>
-    <input type="text" id="searchBar"  class="form-control w-25" placeholder="Search...">
+    <a href="{% url 'auctions:create_auction' %}">
+      <button class="btn btn-info text-lg text-dark" type="button" href="{% url 'auctions:create_auction' %}">
+        Create Auction
+      </button>
+    </a>
+    <input type="text" id="searchBar"  class="form-control w-25" placeholder="Search item name...">
   </div>
-  <div class="container">
+  <div class="container pt-5">
     <div class="row row-cols-1 row-cols-md-4 g-4">
         {% for auction in auctions %}
             <div class="col" data-item-name="{{ auction.auction_item.first.item_name }}">
                 <div class="card">
-                  
-                  
-                    <div class="card-body">
+                  <div class="card-header d-flex justify-content-between">
+                    {% with auction.auction_item.first as item %}
+                    <img src="{{item.item_image.url }}" class="card-img-top item-image rounded">
+                    {% endwith %}
+
+                    <div class="dropdown">
+                      <a href="#" data-bs-toggle="dropdown"><i class="fas fa-ellipsis-v text-dark fa-2xl"></i></a>
+
+                      <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                        <li>
+                          <div class="d-flex align-items-center">
+                            <div class="me-2">
+                              <i class="fa-regular fa-trash-can btn dropdown-item text-danger"  data-bs-toggle="modal" data-bs-target="#delete_{{ auction.id }}"></i>
+                            </div>
+                            <strong>Delete</strong>
+                          </div> 
+                        </li>
+                        
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="card-body">
+                      <h5 class="card-title">{{ auction.title }}</h5>
+                      {% with auction.auction_item.first as item %}
+                          <span>{{ item.item_rarity|upper }} {{ item.item_name|upper }} {{ item.item_rank|upper }}</span><br>
+                          <span class=" text-sm text-muted">Type: {{ item.item_type }} &nbsp; Faction: {{ item.item_faction }}</span><br>
+                          <span class="text-sm text-muted">Quality: {{ item.item_quality }} &nbsp; Durability: {{ item.item_durability }}%</span>
+                      {% endwith %}
+                      <hr>
                       <div class="d-flex justify-content-between">
-                        <img src="{% static 'img/logo.jpg' %}" class="card-img-top w-25" alt="{{ auction.title }}">
-                        <i class="fa-solid fa-ellipsis-vertical fa-xl"></i>
-                      </div> 
-                        <h5 class="card-title">{{ auction.title }}</h5>
-                        {% with auction.auction_item.first as item %}
-                            <p class="card-text">{{ item.item_rarity|upper }} {{ item.item_name|upper }} {{ item.item_rank|upper }}</p>
+                        <p>Starting bid: ${{ auction.starting_bid }}</p>
+                        <p>Current bid: $0.00</p>
+                      </div>
+                      
+                      <p>BUY NOW: ${{ auction.buyout }}</p>
 
-                        {% endwith %}
-                        <p class="card-text">Starting bid: ${{ auction.starting_bid }}</p>
-                        <p class="card-text">BUY NOW: ${{ auction.buyout }}</p>
-
-                    </div>
-                    <div class="card-footer">
-                        <small class="text-muted">Posted now</small>
-                    </div>
+                  </div>
+                  <div class="card-footer text-center">
+                      <small class="text-muted">Ends {{ auction.end_time }}</small>
+                  </div>
                 </div>
             </div>
         {% empty %}
@@ -54,6 +86,28 @@
   </div>
 </div>
 
+
+{% for auction in auctions %}
+<!-- MODAL FOR DELETE AUCTION -->
+<div class="modal fade" id="delete_{{ auction.id }}" tabindex="-1" aria-labelledby="deleteLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Delete auction</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p><strong>Are you sure you want to delete this auction? This cannot be reversed!!!</strong></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <a href="{% url 'auctions:delete_auction' auction.id %}" class="btn btn-danger">Yes, confirm and delete</a>
+
+      </div>
+    </div>
+  </div>
+</div>
+{% endfor %}
 
 <script>
   // Wait for the DOM to be ready
@@ -79,6 +133,8 @@
       // Event listener for the search bar
       searchBar.addEventListener('keyup', searchItems);
   });
-  </script>
+
+ 
+</script>
   
 {% endblock content %}

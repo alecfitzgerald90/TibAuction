@@ -68,11 +68,8 @@ class Auction(models.Model):
     end_time = models.DateTimeField()
     date_created = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now_add=True)
-
     # FKs
     status = models.ForeignKey(AuctionStatus, on_delete=models.CASCADE,default=1, related_name='auction_status')
-    # item = models.ForeignKey(Item, on_delete=models.CASCADE, related_name='auction_item') # For now, an auction can have 1 and only 1 item OR....
-    # ship = models.ForeignKey(Ship, on_delete=models.CASCADE, related_name='auction_ship')                                 # ... 1 and only one ship
     created_by = models.ForeignKey(User, on_delete=models.CASCADE)
 
     # set auction to return as it's title
